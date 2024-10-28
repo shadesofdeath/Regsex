@@ -9,7 +9,7 @@ export function Header() {
         <div className="flex gap-2 items-center mr-4">
           <Link href="/" className="flex items-center gap-2">
             <Settings className="h-6 w-6" />
-            <span className="font-bold text-xl">Windows Customizer</span>
+            <span className="font-bold text-xl">Regsex</span>
           </Link>
         </div>
         <div className="flex items-center gap-6">

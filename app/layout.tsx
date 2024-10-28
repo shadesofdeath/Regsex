@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Windows Customizer',
+  title: 'Regsex',
   description: 'Customize your Windows experience with registry tweaks',
 };
 

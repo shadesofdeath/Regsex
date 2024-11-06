@@ -2,14 +2,13 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
-import { ThemeToggle } from '@/components/theme-toggle';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Regsex',
-  description: 'Customize your Windows experience with registry tweaks',
+  title: 'Windows Registry Tweaks',
+  description: 'Useful Windows registry tweaks to enhance your system',
 };
 
 export default function RootLayout({
@@ -27,18 +26,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <Toaster 
-            position="bottom-right"
-            toastOptions={{
-              className: 'dark:bg-gray-800 dark:text-white',
-              duration: 2000,
-              style: {
-                background: 'var(--background)',
-                color: 'var(--foreground)',
-                border: '1px solid var(--border)',
-              },
-            }}
-          />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

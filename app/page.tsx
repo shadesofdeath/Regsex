@@ -25,8 +25,6 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<'name' | 'impact'>('name');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
-  const impactOrder: { [key: string]: number } = { high: 3, medium: 2, low: 1, undefined: 0 };
-
   const filteredTweaks = tweaks
     .filter((tweak) => {
       const matchesCategory = selectedCategory
@@ -41,8 +39,7 @@ export default function Home() {
       if (sortBy === 'name') {
         return a.title.localeCompare(b.title);
       } else {
-        const getImpactOrder = (impact: string | undefined) => impactOrder[impact || 'undefined'];
-        return getImpactOrder(b.systemImpact) - getImpactOrder(a.systemImpact);
+        return 0; // No sorting by impact, as the feature is removed
       }
     });
 

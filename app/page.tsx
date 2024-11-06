@@ -22,7 +22,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAbout, setShowAbout] = useState(false);
-  const [sortBy, setSortBy] = useState<'name' | 'impact'>('name');
+  const [sortBy, setSortBy] = useState<'name'>('name');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const filteredTweaks = tweaks
@@ -75,10 +75,6 @@ export default function Home() {
                 <DropdownMenuItem onClick={() => setSortBy('name')}>
                   <SortAsc className="mr-2 h-4 w-4" />
                   Sort by Name
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setSortBy('impact')}>
-                  <Filter className="mr-2 h-4 w-4" />
-                  Sort by Impact
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

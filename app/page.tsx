@@ -16,13 +16,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAbout, setShowAbout] = useState(false);
-  const [sortBy, setSortBy] = useState<'name'>('name');
+  const [sortBy, setSortBy] = useState<'name' | 'impact'>('name');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const filteredTweaks = tweaks
@@ -39,7 +38,11 @@ export default function Home() {
       if (sortBy === 'name') {
         return a.title.localeCompare(b.title);
       } else {
-        return 0; // No sorting by impact, as the feature is removed
+        const impactOrder = { high: 3, medium: 2, low: 1, undefined: 0 };
+        return (
+          impactOrder[b.systemImpact || 'undefined'] -
+          impactOrder[a.systemImpact || 'undefined']
+        );
       }
     });
 
@@ -49,7 +52,7 @@ export default function Home() {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Regsex
+              Windows Kayıt Defteri Düzenleyici
             </h1>
             <Button
               variant="ghost"
@@ -74,7 +77,11 @@ export default function Home() {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => setSortBy('name')}>
                   <SortAsc className="mr-2 h-4 w-4" />
-                  Sort by Name
+                  İsme Göre Sırala
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setSortBy('impact')}>
+                  <Filter className="mr-2 h-4 w-4" />
+                  Etkiye Göre Sırala
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -133,8 +140,7 @@ export default function Home() {
           {filteredTweaks.length === 0 && (
             <div className="text-center py-12 col-span-full">
               <p className="text-muted-foreground">
-                No tweaks found. Try adjusting your search or category
-                selection.
+                Tweak bulunamadı. Arama kriterlerinizi veya kategori seçiminizi değiştirin.
               </p>
             </div>
           )}
